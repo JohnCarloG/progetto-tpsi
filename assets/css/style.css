@@ -217,6 +217,58 @@ footer p {
 }
 
 /* ===========================
+   Timeline Storia
+   =========================== */
+.timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    border-left: 3px solid rgba(251, 191, 36, 0.4);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-point {
+    position: absolute;
+    left: -1.15rem;
+    top: 0.35rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    background: var(--warning-color);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.15);
+}
+
+.timeline-content h5 {
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+}
+
+.timeline-content p {
+    line-height: 1.5;
+}
+
+@media (max-width: 576px) {
+    .timeline {
+        padding-left: 1.75rem;
+    }
+    .timeline-point {
+        left: -0.95rem;
+    }
+}
+
+/* ===========================
    Responsive Design
    =========================== */
 @media (max-width: 768px) {

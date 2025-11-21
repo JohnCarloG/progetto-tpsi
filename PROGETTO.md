@@ -21,7 +21,7 @@ progetto-tpsi/
 
 ---
 
-## 🎯 Caratteristiche Implementate (Fase 1)
+## 🎯 Caratteristiche Implementate (Fase 1 & Inizio Fase 2)
 
 ### 1. **Navbar Responsiva**
 - Navigation bar sticky con branding "Firenze"
@@ -52,6 +52,12 @@ progetto-tpsi/
 ### 4. **Footer**
 - Informazioni di copyright
 - Testo di attributo del progetto
+
+### 5. **Sezione Storia**
+- Timeline cronologica (fondazione romana → medioevo → rinascimento → granducato → unità → alluvione → era contemporanea)
+- Animazione reveal on-scroll (IntersectionObserver)
+- Struttura semantica (ol + li)
+- Design responsive con colonna centrale
 
 ---
 
@@ -120,7 +126,7 @@ progetto-tpsi/
 ## 📝 Prossimi Passi Suggeriti
 
 ### Fase 2 - Sezioni Aggiuntive
-- [ ] Sezione "Storia" con timeline
+- [x] Sezione "Storia" con timeline
 - [ ] Sezione "Attrazioni" con card grid
 - [ ] Sezione "Quando Visitare" con info stagionali
 

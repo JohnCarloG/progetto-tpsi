@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     initializeNavbar();
     initializeScrollEffects();
+    initializeTimeline(); // nuova inizializzazione timeline
 });
 
 // ===========================
@@ -67,6 +68,22 @@ function initializeScrollEffects() {
             heroSection.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
         });
     }
+}
+
+// ===========================
+// Timeline
+// ===========================
+function initializeTimeline() {
+    const items = document.querySelectorAll('.timeline-item');
+    if (!items.length) return;
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+    items.forEach(item => observer.observe(item));
 }
 
 // ===========================
