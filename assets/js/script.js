@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavbar();
     initializeScrollEffects();
     initializeTimeline(); // nuova inizializzazione timeline
+    initializeStaticMap(); // mappa Duomo
 });
 
 // ===========================
@@ -84,6 +85,37 @@ function initializeTimeline() {
         });
     }, { threshold: 0.2 });
     items.forEach(item => observer.observe(item));
+}
+
+// ===========================
+// Mappa Statica
+// ===========================
+function initializeStaticMap() {
+    const mapEl = document.getElementById('mappa-duomo');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    const center = [43.773106, 11.255889]; // Piazza del Duomo Firenze
+    const map = L.map('mappa-duomo', {
+        center,
+        zoom: 18,
+        minZoom: 17,
+        maxZoom: 19,
+        dragging: false,
+        scrollWheelZoom: false,
+        touchZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker(center)
+        .addTo(map)
+        .bindPopup('<strong>Piazza del Duomo</strong><br>Centro storico di Firenze.')
+        .openPopup();
 }
 
 // ===========================

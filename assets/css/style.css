@@ -321,3 +321,24 @@ footer p {
     }
 }
 
+/* ===========================
+   Mappa Duomo
+   =========================== */
+#mappa-duomo {
+    height: 420px;
+    border: 2px solid rgba(251, 191, 36, 0.3);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+#mappa-duomo .leaflet-control-zoom a {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+}
+
+#mappa-duomo .leaflet-control-zoom a:hover {
+    background: var(--warning-color);
+    color: #111827;
+}
+

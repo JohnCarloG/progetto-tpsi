@@ -133,7 +133,7 @@ progetto-tpsi/
 ### Fase 3 - Funzionalità Avanzate
 - [ ] Galleria lightbox per immagini
 - [ ] Form contatti con validazione
-- [ ] Mappa interattiva (Leaflet/Mapbox)
+- [x] Mappa interattiva (Leaflet) centrata su Piazza del Duomo (zoom consentito, nessun movimento)
 - [ ] Filter/ricerca attrazioni
 
 ### Fase 4 - Ottimizzazione
