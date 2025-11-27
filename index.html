@@ -38,6 +38,9 @@
                         <a class="nav-link" href="#storia">Storia</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#mappa">Mappa</a>
+                    </li>                    
+                    <li class="nav-item">
                         <a class="nav-link" href="#attrazioni">Attrazioni</a>
                     </li>
                     <li class="nav-item">
@@ -63,6 +66,32 @@
                         <a href="#attrazioni" class="btn btn-outline-light btn-lg fw-semibold">Le Attrazioni</a>
                     </div>
                 </div>
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <!-- 3D Duomo Viewer -->
+                    <div class="duomo-3d card bg-dark border-0 shadow-sm">
+                        <div class="card-header bg-transparent text-white d-flex align-items-center justify-content-between">
+                            <span class="fw-semibold">Cattedrale di Santa Maria del Fiore (3D)</span>
+                            <span class="badge bg-warning text-dark">Beta</span>
+                        </div>
+                        <div class="card-body p-0">
+                            <!-- Uso di model-viewer: supporta GLB/GLTF. Inserire il file convertito -->
+                            <model-viewer id="duomoViewer"
+                                src="assets/models/duomo.glb"
+                                alt="Modello 3D del Duomo di Firenze"
+                                camera-controls
+                                touch-action="pan-y"
+                                auto-rotate
+                                ar
+                                exposure="0.95"
+                                poster="assets/img/duomo-florence.webp"
+                                style="width: 100%; height: 320px; background: #111; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem;">
+                            </model-viewer>
+                        </div>
+                        <div class="card-footer bg-transparent text-muted small">
+                            Suggerimento: per un modello realistico, inserisci un file <code>.glb</code> in <code>assets/models/duomo.glb</code> (convertito da STL di Thingiverse).
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -73,12 +102,7 @@
             <div class="row align-items-center g-4">
                 <div class="col-lg-6">
                     <div class="image-placeholder">
-                        <svg class="w-100" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="400" height="300" fill="#e9ecef"/>
-                            <text x="50%" y="50%" font-size="18" fill="#6c757d" text-anchor="middle" dominant-baseline="middle">
-                                Cupola del Duomo
-                            </text>
-                        </svg>
+                        <img src="assets/img/cupola_brunelleschi-florence.jpg" class="w-100" alt="Cupola del Duomo" style="display: block; border-radius: 0.5rem;">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -188,6 +212,175 @@
         </div>
     </section>
 
+    <!-- Sezione Attrazioni -->
+    <section id="attrazioni" class="py-5 bg-white">
+        <div class="container-lg">
+            <h2 class="h1 fw-bold text-center mb-4">Attrazioni di Firenze</h2>
+            <p class="text-muted text-center mb-5">Dettagli, orari aggiornati e recensioni sintetiche.</p>
+            <div class="row g-4">
+                <!-- Duomo -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/duomo-florence.webp" class="card-img-top" alt="Duomo di Firenze">
+                        <div class="card-body">
+                            <h5 class="card-title">Cattedrale di Santa Maria del Fiore</h5>
+                            <p class="card-text text-muted">Capolavoro del Rinascimento con la celebre cupola di Brunelleschi.</p>
+                            <ul class="list-unstyled small mb-3">
+                                <li><strong>Indirizzo:</strong> Piazza del Duomo</li>
+                                <li><strong>Orari:</strong> Lun–Sab 10:15–16:45, Dom 13:30–16:45</li>
+                                <li><strong>Prezzi:</strong> Cattedrale gratis; cupola/battistero con biglietto cumulativo</li>
+                            </ul>
+                            <div class="rating" aria-label="Valutazione media">
+                                ⭐⭐⭐⭐⭐ <span class="text-muted">4.8/5 (visitatori)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Uffizi -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/Uffizi-florencewebp.webp" class="card-img-top" alt="Galleria degli Uffizi">
+                        <div class="card-body">
+                            <h5 class="card-title">Galleria degli Uffizi</h5>
+                            <p class="card-text text-muted">Uno dei musei più importanti al mondo, con opere di Botticelli, Leonardo e Michelangelo.</p>
+                            <ul class="list-unstyled small mb-3">
+                                <li><strong>Indirizzo:</strong> Piazzale degli Uffizi</li>
+                                <li><strong>Orari:</strong> Mar–Dom 8:15–18:30, chiuso Lunedì</li>
+                                <li><strong>Prezzi:</strong> Intero variabile; consigliata prenotazione</li>
+                            </ul>
+                            <div class="rating" aria-label="Valutazione media">
+                                ⭐⭐⭐⭐⭐ <span class="text-muted">4.7/5 (visitatori)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ponte Vecchio -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/pontevecchio-florence.pg.jpg" class="card-img-top" alt="Ponte Vecchio">
+                        <div class="card-body">
+                            <h5 class="card-title">Ponte Vecchio</h5>
+                            <p class="card-text text-muted">Storico ponte sul fiume Arno, famoso per le botteghe orafe.</p>
+                            <ul class="list-unstyled small mb-3">
+                                <li><strong>Indirizzo:</strong> Ponte Vecchio</li>
+                                <li><strong>Orari:</strong> Sempre aperto (area pubblica)</li>
+                                <li><strong>Prezzi:</strong> Accesso libero</li>
+                            </ul>
+                            <div class="rating" aria-label="Valutazione media">
+                                ⭐⭐⭐⭐☆ <span class="text-muted">4.6/5 (visitatori)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Palazzo Pitti -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/pitti-florence.jpg" class="card-img-top" alt="Palazzo Pitti">
+                        <div class="card-body">
+                            <h5 class="card-title">Palazzo Pitti e Giardino di Boboli</h5>
+                            <p class="card-text text-muted">Residenza storica con musei e meravigliosi giardini rinascimentali.</p>
+                            <ul class="list-unstyled small mb-3">
+                                <li><strong>Indirizzo:</strong> Piazza de' Pitti</li>
+                                <li><strong>Orari:</strong> Mar–Dom 8:15–18:30, chiuso Lunedì</li>
+                                <li><strong>Prezzi:</strong> Biglietto musei; Boboli con ticket dedicato</li>
+                            </ul>
+                            <div class="rating" aria-label="Valutazione media">
+                                ⭐⭐⭐⭐☆ <span class="text-muted">4.6/5 (visitatori)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accademia -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/Galleria-florence.jpg" class="card-img-top" alt="Galleria dell'Accademia">
+                        <div class="card-body">
+                            <h5 class="card-title">Galleria dell'Accademia (David)</h5>
+                            <p class="card-text text-muted">Celebre per il David di Michelangelo e altre opere rinascimentali.</p>
+                            <ul class="list-unstyled small mb-3">
+                                <li><strong>Indirizzo:</strong> Via Ricasoli</li>
+                                <li><strong>Orari:</strong> Mar–Dom 9:00–18:45, chiuso Lunedì</li>
+                                <li><strong>Prezzi:</strong> Biglietto d'ingresso; consigliata prenotazione</li>
+                            </ul>
+                            <div class="rating" aria-label="Valutazione media">
+                                ⭐⭐⭐⭐⭐ <span class="text-muted">4.7/5 (visitatori)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Santa Croce -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/santacroce-florence.jpg" class="card-img-top" alt="Basilica di Santa Croce">
+                        <div class="card-body">
+                            <h5 class="card-title">Basilica di Santa Croce</h5>
+                            <p class="card-text text-muted">Luogo di sepoltura di grandi italiani, con opere di Giotto e Donatello.</p>
+                            <ul class="list-unstyled small mb-3">
+                                <li><strong>Indirizzo:</strong> Piazza Santa Croce</li>
+                                <li><strong>Orari:</strong> Lun–Sab 9:30–17:30, Dom 12:30–17:30</li>
+                                <li><strong>Prezzi:</strong> Biglietto d'ingresso</li>
+                            </ul>
+                            <div class="rating" aria-label="Valutazione media">
+                                ⭐⭐⭐⭐☆ <span class="text-muted">4.6/5 (visitatori)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Contatti -->
+    <section id="contatti" class="py-5 bg-light">
+        <div class="container-lg">
+            <h2 class="h1 fw-bold text-center mb-4">Contatti del Team</h2>
+            <div class="row g-4">
+                <!-- Roberto -->
+                <div class="col-md-4">
+                    <div class="contact-card card h-100 shadow-sm" data-member="roberto">
+                        <div class="card-body text-center">
+                            <img class="rounded-circle mb-3" src="https://ui-avatars.com/api/?name=Roberto&background=fbbf24&color=111827" width="92" height="92" alt="Avatar Roberto">
+                            <h5 class="card-title mb-1">Roberto</h5>
+                            <p class="text-muted small">Sviluppatore</p>
+                            <button class="btn btn-warning btn-sm mt-2">Mostra Dettagli</button>
+                            <div class="contact-details mt-3 d-none">
+                                <p class="small mb-0"><strong>Email:</strong> grande.roberto@iisgalvanimi.edu.it</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- John Carlo -->
+                <div class="col-md-4">
+                    <div class="contact-card card h-100 shadow-sm" data-member="johncarlo">
+                        <div class="card-body text-center">
+                            <img class="rounded-circle mb-3" src="https://ui-avatars.com/api/?name=John+Carlo&background=fbbf24&color=111827" width="92" height="92" alt="Avatar John Carlo">
+                            <h5 class="card-title mb-1">John Carlo</h5>
+                            <p class="text-muted small">Sviluppatore</p>
+                            <button class="btn btn-warning btn-sm mt-2">Mostra Dettagli</button>
+                            <div class="contact-details mt-3 d-none">
+                                <p class="small mb-0"><strong>Email:</strong> guevarra.john@iisgalvanimi.edu.it</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Francesco -->
+                <div class="col-md-4">
+                    <div class="contact-card card h-100 shadow-sm" data-member="francesco">
+                        <div class="card-body text-center">
+                            <img class="rounded-circle mb-3" src="https://ui-avatars.com/api/?name=Francesco&background=fbbf24&color=111827" width="92" height="92" alt="Avatar Francesco">
+                            <h5 class="card-title mb-1">Francesco</h5>
+                            <p class="text-muted small">Sviluppatore</p>
+                            <button class="btn btn-warning btn-sm mt-2">Mostra Dettagli</button>
+                            <div class="contact-details mt-3 d-none">
+                                <p class="small mb-0"><strong>Email:</strong> mascolo.francesco@iisgalvanimi.edu.it</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-dark text-white text-center py-4 mt-5">
         <div class="container-lg">
             <p class="mb-2">&copy; 2025 Firenze - La Città dell'Arte. Tutti i diritti riservati.</p>
@@ -197,6 +390,12 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Model Viewer Web Component (GLB/GLTF) -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <!-- Three.js + STL Loader (fallback per file .stl) -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/loaders/STLLoader.js"></script>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <!-- Custom JS -->

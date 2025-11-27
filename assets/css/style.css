@@ -137,6 +137,40 @@ body {
 }
 
 /* ===========================
+   Duomo 3D Card
+   =========================== */
+.duomo-3d .card-header {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.duomo-3d model-viewer {
+    --progress-bar-color: var(--warning-color);
+}
+
+.duomo-3d .card-header span.fw-semibold {
+    font-size: 0.95rem;
+}
+
+/* Responsive 3D viewer */
+@media (max-width: 991px) {
+    .duomo-3d {
+        margin-top: 2rem;
+    }
+    .duomo-3d model-viewer {
+        height: 280px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .duomo-3d .card-header span.fw-semibold {
+        font-size: 0.85rem;
+    }
+    .duomo-3d model-viewer {
+        height: 240px !important;
+    }
+}
+
+/* ===========================
    Introduction Section
    =========================== */
 #intro {
@@ -340,5 +374,32 @@ footer p {
 #mappa-duomo .leaflet-control-zoom a:hover {
     background: var(--warning-color);
     color: #111827;
+}
+
+/* ===========================
+   Attrazioni
+   =========================== */
+.card .rating {
+    font-size: 1rem;
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* ===========================
+   Contatti Interattivi
+   =========================== */
+.contact-card button {
+    transition: var(--transition);
+}
+
+.contact-card button:hover {
+    transform: translateY(-1px);
+}
+
+.contact-details {
+    text-align: left;
 }
 
