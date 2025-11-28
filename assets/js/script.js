@@ -43,7 +43,6 @@ function updateActiveNavLink() {
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
         
         if (scrollY >= (sectionTop - 200)) {
             current = section.getAttribute('id');
@@ -172,11 +171,7 @@ function initializeModelViewerFallback() {
     const footer = containerCard?.querySelector('.card-footer');
     
     // Ascolta l'evento di caricamento riuscito
-    mv.addEventListener('load', () => {
-        if (footer) {
-            footer.innerHTML = '<span class="text-success">✓ Modello 3D caricato</span> — Trascina per ruotare, scroll per zoom.';
-        }
-    });
+    
     
     // Solo in caso di errore, prova il fallback STL
     mv.addEventListener('error', () => {
