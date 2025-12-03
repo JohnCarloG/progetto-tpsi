@@ -2,36 +2,116 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firenze - La Città dell'Arte</title>
+    <!-- 
+        charset="UTF-8": Codifica dei caratteri
+        UTF-8 supporta tutti i caratteri: lettere accentate (à, è, ì), simboli (€, ©), emoji
+        Senza questo, caratteri speciali potrebbero apparire come simboli strani
+    -->
     
-    <!-- Bootstrap 5 CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        VIEWPORT: Fondamentale per il responsive design!
+        - width=device-width: La larghezza della pagina = larghezza del dispositivo
+        - initial-scale=1.0: Zoom iniziale al 100%
+        Senza questo meta tag, i siti appaiono "zoomati out" su mobile
+    -->
+    
+    <title>Firenze - La Città dell'Arte</title>
+    <!-- 
+        TITLE: Testo che appare nella tab del browser
+        Importante anche per la SEO (Search Engine Optimization)
+    -->
+    
+    <!-- ========== LIBRERIE CSS ESTERNE ========== -->
+    
+    <!-- Bootstrap 5 CSS - Framework CSS per layout responsivo e componenti pronti -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 
+        Bootstrap fornisce:
+        - Sistema a griglia (col-md-6, row, container)
+        - Componenti (navbar, card, button)
+        - Utility classes (py-5, text-center, d-flex)
+    -->
 
-
-    <!-- Personalized Fonts -->
+    <!-- Google Fonts - Font personalizzato "Varela Round" -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 
+        preconnect: Apre la connessione al server in anticipo
+        Migliora la performance del caricamento del font
+    -->
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <!-- display=swap: Mostra un font di fallback mentre carica quello custom -->
     
-    <!-- Custom CSS -->
+    <!-- CSS personalizzato del progetto -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Leaflet CSS -->
+    <!-- 
+        Questo file contiene gli stili PERSONALIZZATI che sovrascrivono
+        o estendono quelli di Bootstrap
+    -->
+    
+    <!-- Leaflet CSS - Libreria per mappe interattive -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <!-- 
+        integrity: Hash di sicurezza che verifica che il file non sia stato modificato
+        crossorigin: Permette di caricare risorse da altri domini
+    -->
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- 
+        ================================================================
+        BODY: Contiene tutto il contenuto VISIBILE della pagina
+        Strutturato in sezioni semantiche: nav, section, footer
+        ================================================================
+    -->
+
+    <!-- ================================================================
+         NAVBAR - Barra di Navigazione Responsive
+         ================================================================ -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <!-- 
+            CLASSI BOOTSTRAP:
+            - navbar: Classe base per la navigazione
+            - navbar-expand-lg: Menu espanso su schermi ≥992px, hamburger su mobile
+            - navbar-dark: Testo chiaro (per sfondi scuri)
+            - bg-dark: Sfondo scuro (#212529)
+            - sticky-top: La navbar RESTA FISSA in alto durante lo scroll
+        -->
+        
         <div class="container-lg">
+            <!-- container-lg: Contenitore centrato con max-width 1140px -->
+            
+            <!-- Logo/Brand del sito -->
             <a class="navbar-brand fw-bold" href="#home">
+                <!-- fw-bold = font-weight: bold (grassetto) -->
                 <span class="text-warning">Firenze</span>
+                <!-- text-warning = colore giallo Bootstrap -->
             </a>
+            
+            <!-- 
+                HAMBURGER BUTTON - Visibile solo su mobile (< 992px)
+                data-bs-toggle="collapse": Attiva il comportamento collapse di Bootstrap
+                data-bs-target="#navbarNav": ID dell'elemento da aprire/chiudere
+                aria-*: Attributi per accessibilità (screen reader)
+            -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
+            <!-- Menu di navigazione (si nasconde su mobile) -->
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- 
+                    collapse navbar-collapse: Nascosto su mobile, visibile su desktop
+                    id="navbarNav": DEVE corrispondere al data-bs-target del button
+                -->
+                
                 <ul class="navbar-nav ms-auto">
+                    <!-- 
+                        navbar-nav: Stile lista navigazione
+                        ms-auto: margin-start auto = spinge i link a DESTRA
+                    -->
                     <li class="nav-item">
+                        <!-- nav-link: stile link navbar | active: evidenzia link corrente -->
                         <a class="nav-link active" aria-current="page" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
@@ -51,61 +131,148 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ================================================================
+         HERO SECTION - Sezione principale di impatto visivo
+         ================================================================ -->
     <section id="home" class="hero-section">
+        <!-- 
+            id="home": Ancora per la navigazione (#home)
+            class="hero-section": Stili personalizzati in style.css
+        -->
+        
         <div class="hero-overlay"></div>
+        <!-- Overlay decorativo con pattern SVG (definito in CSS) -->
+        
+        <div class="container-lg h-100 d-flex align-items-center"></div>
+        <!-- Contenitore vuoto per spacing -->
+        
         <div class="container-lg h-100 d-flex align-items-center">
+            <!-- 
+                h-100: height 100%
+                d-flex: display flex
+                align-items-center: centra verticalmente i figli
+            -->
+            
             <div class="row w-100">
+                <!-- w-100: width 100% -->
+                
+                <!-- Colonna testo principale -->
                 <div class="col-lg-8 col-md-10 text-white">
+                    <!-- 
+                        col-lg-8: 8/12 colonne (66%) su desktop
+                        col-md-10: 10/12 colonne (83%) su tablet
+                        text-white: testo bianco
+                    -->
+                    
                     <h1 class="display-3 fw-bold mb-3">Firenze</h1>
+                    <!-- display-3: Titolo molto grande | mb-3: margin-bottom -->
+                    
                     <p class="lead mb-4">
+                        <!-- lead: paragrafo in evidenza, font più grande -->
                         Scopri la culla del Rinascimento, dove arte, storia e bellezza si incontrano in ogni angolo della città.
                     </p>
+                    
                     <div class="d-flex gap-3">
+                        <!-- d-flex gap-3: Flexbox con spazio di 1rem tra elementi -->
+                        
+                        <!-- Pulsante primario (giallo) -->
                         <a href="#storia" class="btn btn-warning btn-lg fw-semibold">Scopri di più</a>
+                        <!-- btn-warning: bottone giallo | btn-lg: dimensione large -->
+                        
+                        <!-- Pulsante secondario (contorno) -->
                         <a href="#attrazioni" class="btn btn-outline-light btn-lg fw-semibold">Le Attrazioni</a>
+                        <!-- btn-outline-light: bottone con solo bordo bianco -->
                     </div>
                 </div>
+                
+                <!-- Colonna visualizzatore 3D -->
                 <div class="col-lg-4 mt-4 mt-lg-0">
-                    <!-- 3D Duomo Viewer -->
+                    <!-- 
+                        col-lg-4: 4/12 colonne (33%) su desktop
+                        mt-4: margin-top su mobile
+                        mt-lg-0: NESSUN margin-top su desktop
+                    -->
+                    <!-- ========== MODEL VIEWER 3D ========== -->
                     <div class="duomo-3d card bg-dark border-0 shadow-sm">
+                        <!-- 
+                            card: Componente Bootstrap card
+                            bg-dark: sfondo scuro
+                            border-0: nessun bordo
+                            shadow-sm: ombra leggera
+                        -->
+                        
                         <div class="card-header bg-transparent text-white d-flex align-items-center justify-content-between">
+                            <!-- 
+                                bg-transparent: sfondo trasparente
+                                justify-content-between: spazio tra elementi (titolo e badge)
+                            -->
                             <span class="fw-semibold">Cattedrale di Santa Maria del Fiore (3D)</span>
                             <span class="badge bg-warning text-dark">Beta</span>
+                            <!-- badge: etichetta piccola evidenziata -->
                         </div>
+                        
                         <div class="card-body p-0">
-                            <!-- Uso di model-viewer: supporta GLB/GLTF. Inserire il file convertito -->
+                            <!-- p-0: padding zero (immagine a bordo) -->
+                            
+                            <!-- 
+                                MODEL-VIEWER: Web Component di Google per modelli 3D
+                                - src: percorso del file 3D (formato GLB/GLTF)
+                                - camera-controls: permette rotazione con mouse/touch
+                                - auto-rotate: rotazione automatica
+                                - ar: supporto Realtà Aumentata
+                                - poster: immagine mostrata durante il caricamento
+                            -->
                             <model-viewer id="duomoViewer"
-                                src="assets/models/duomo.glb"
-                                alt="Modello 3D del Duomo di Firenze"
-                                camera-controls
-                                touch-action="pan-y"
-                                auto-rotate
-                                ar
-                                exposure="0.95"
-                                poster="assets/img/duomo-florence.webp"
-                                style="width: 100%; height: 320px; background: #111; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem;">
+                                src="assets/models/duomo.glb"    
+                                camera-controls                   
+                                auto-rotate                        
+                                ar                                 
+                                poster="assets/img/duomo.webp">   
                             </model-viewer>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Introduction Section -->
+    <!-- ================================================================
+         SEZIONE INTRODUZIONE - Presentazione di Firenze
+         ================================================================ -->
     <section id="intro" class="py-5">
+        <!-- py-5: padding verticale (top e bottom) di 3rem -->
+        
         <div class="container-lg">
             <div class="row align-items-center g-4">
+                <!-- 
+                    align-items-center: allinea verticalmente le colonne
+                    g-4: gap (gutter) di 1.5rem tra le colonne
+                -->
+                
+                <!-- Colonna immagine -->
                 <div class="col-lg-6">
+                    <!-- col-lg-6: 50% della larghezza su desktop -->
+                    
                     <div class="image-placeholder">
-                        <img src="assets/img/cupola_brunelleschi-florence.jpg" class="w-100" alt="Cupola del Duomo" style="display: block; border-radius: 0.5rem;">
+                        <!-- Contenitore con stili personalizzati (ombra, hover) -->
+                        <img src="assets/img/cupola_brunelleschi-florence.jpg" 
+                             class="w-100" 
+                             alt="Cupola del Duomo" 
+                             style="display: block; border-radius: 0.5rem;">
+                        <!-- 
+                            w-100: width 100%
+                            alt: testo alternativo per accessibilità e SEO
+                        -->
                     </div>
                 </div>
+                
+                <!-- Colonna testo -->
                 <div class="col-lg-6">
                     <h2 class="h1 fw-bold mb-3">La Città dell'Arte</h2>
+                    <!-- h1: dimensione h1 ma semanticamente è h2 -->
+                    
                     <p class="mb-3 text-muted">
+                        <!-- text-muted: grigio chiaro per testo secondario -->
                         Firenze è una delle città più affascinanti d'Italia e del mondo intero. Capitale della Toscana, 
                         è celebre per il suo patrimonio artistico, architettonico e culturale senza pari.
                     </p>
@@ -113,10 +280,15 @@
                         Con una popolazione di circa 380.000 abitanti, la città rappresenta un perfetto equilibrio 
                         tra tradizione medievale e rinascimentale, e una vivace comunità contemporanea.
                     </p>
+                    
+                    <!-- Lista punti chiave -->
                     <ul class="list-unstyled">
+                        <!-- list-unstyled: rimuove pallini e padding default -->
+                        
                         <li class="mb-2">
                             <span class="text-warning fw-bold">●</span>
                             <span class="ms-2">Patrimonio UNESCO dal 1982</span>
+                            <!-- ms-2: margin-start (sinistra) -->
                         </li>
                         <li class="mb-2">
                             <span class="text-warning fw-bold">●</span>
@@ -136,23 +308,46 @@
         </div>
     </section>
 
-    <!-- Sezione Storia -->
+    <!-- ================================================================
+         SEZIONE STORIA - Timeline storica di Firenze
+         ================================================================ -->
     <section id="storia" class="py-5 bg-white">
+        <!-- bg-white: sfondo bianco -->
+        
         <div class="container-lg">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
+                    <!-- mx-auto: margin orizzontale auto = CENTRA la colonna -->
+                    
                     <h2 class="h1 fw-bold mb-4 text-center">Storia di Firenze</h2>
                     <p class="text-muted lead mb-5 text-center">
                         Una timeline sintetica dei principali periodi che hanno plasmato l'identità della città.
                     </p>
+                    
+                    <!-- 
+                        TIMELINE: Lista ordinata stilizzata come linea temporale
+                        - ol: lista ordinata (semanticamente corretto per sequenza cronologica)
+                        - list-unstyled: rimuove numeri default
+                        - aria-label: accessibilità per screen reader
+                    -->
                     <ol class="timeline list-unstyled mb-0" aria-label="Timeline storica di Firenze">
+                        
+                        <!-- Ogni evento della timeline -->
                         <li class="timeline-item">
+                            <!-- 
+                                timeline-item: Stili in style.css
+                                Animazione: inizia invisibile, diventa visibile con JS (IntersectionObserver)
+                            -->
                             <div class="timeline-point"></div>
+                            <!-- Pallino giallo sulla linea verticale -->
+                            
                             <div class="timeline-content">
                                 <h5 class="fw-semibold mb-1">Fondazione Romana (59 a.C.)</h5>
+                                <!-- small: testo più piccolo | mb-0: no margin bottom -->
                                 <p class="small text-muted mb-0">Florentia nasce come colonia romana pianificata con impianto a griglia (cardo e decumanus).</p>
                             </div>
                         </li>
+                        
                         <li class="timeline-item">
                             <div class="timeline-point"></div>
                             <div class="timeline-content">
@@ -160,6 +355,7 @@
                                 <p class="small text-muted mb-0">Crescita economica tessile, lotte tra guelfi e ghibellini, prime corporazioni.</p>
                             </div>
                         </li>
+                        
                         <li class="timeline-item">
                             <div class="timeline-point"></div>
                             <div class="timeline-content">
@@ -167,6 +363,7 @@
                                 <p class="small text-muted mb-0">Età d'oro: Mecenatismo dei Medici, artisti come Leonardo, Michelangelo, Botticelli.</p>
                             </div>
                         </li>
+                        
                         <li class="timeline-item">
                             <div class="timeline-point"></div>
                             <div class="timeline-content">
@@ -174,6 +371,7 @@
                                 <p class="small text-muted mb-0">Stabilità politica sotto i Medici e poi Lorena, sviluppo artistico e scientifico.</p>
                             </div>
                         </li>
+                        
                         <li class="timeline-item">
                             <div class="timeline-point"></div>
                             <div class="timeline-content">
@@ -181,6 +379,7 @@
                                 <p class="small text-muted mb-0">Firenze capitale provvisoria del Regno: rinnovamenti urbanistici (Viali, Piazza della Repubblica).</p>
                             </div>
                         </li>
+                        
                         <li class="timeline-item">
                             <div class="timeline-point"></div>
                             <div class="timeline-content">
@@ -188,6 +387,7 @@
                                 <p class="small text-muted mb-0">Disastro storico e mobilitazione internazionale per salvare il patrimonio artistico.</p>
                             </div>
                         </li>
+                        
                         <li class="timeline-item">
                             <div class="timeline-point"></div>
                             <div class="timeline-content">
@@ -201,40 +401,77 @@
         </div>
     </section>
 
-    <!-- Sezione Mappa -->
+    <!-- ================================================================
+         SEZIONE MAPPA - Mappa interattiva Leaflet
+         ================================================================ -->
     <section id="mappa" class="py-5 bg-light">
+        <!-- bg-light: sfondo grigio chiaro -->
+        
         <div class="container-lg">
             <h2 class="h1 fw-bold text-center mb-4">Duomo di Firenze</h2>
             <p class="text-muted text-center mb-4">Vista centrale sulla piazza</p>
+            
             <div id="mappa-duomo" class="shadow-sm"></div>
+            <!-- 
+                CONTENITORE MAPPA LEAFLET
+                - Questo div vuoto verrà riempito da JavaScript (Leaflet)
+                - L'id "mappa-duomo" è usato da L.map() in script.js
+                - Altezza definita in style.css (#mappa-duomo { height: 420px; })
+            -->
         </div>
     </section>
 
-    <!-- Sezione Attrazioni -->
+    <!-- ================================================================
+         SEZIONE ATTRAZIONI - Cards delle attrazioni turistiche
+         ================================================================ -->
     <section id="attrazioni" class="py-5 bg-white">
         <div class="container-lg">
             <h2 class="h1 fw-bold text-center mb-4">Attrazioni di Firenze</h2>
             <p class="text-muted text-center mb-5">Dettagli, orari aggiornati e recensioni sintetiche.</p>
+            
             <div class="row g-4">
-                <!-- Duomo -->
+                <!-- 
+                    ROW + G-4: Griglia Bootstrap con gap di 1.5rem
+                    Le card sono disposte in righe di 3 su desktop (col-lg-4)
+                -->
+                
+                <!-- ========== CARD 1: Duomo ========== -->
                 <div class="col-md-6 col-lg-4">
+                    <!-- 
+                        col-md-6: 2 colonne su tablet (50%)
+                        col-lg-4: 3 colonne su desktop (33%)
+                    -->
+                    
                     <div class="card h-100 shadow-sm">
+                        <!-- 
+                            card: Componente Bootstrap
+                            h-100: altezza 100% (tutte le card stessa altezza)
+                            shadow-sm: ombra leggera
+                        -->
+                        
                         <img src="assets/img/duomo-florence.webp" class="card-img-top" alt="Duomo di Firenze">
+                        <!-- card-img-top: immagine in cima alla card -->
+                        
                         <div class="card-body">
                             <h5 class="card-title">Cattedrale di Santa Maria del Fiore</h5>
                             <p class="card-text text-muted">Capolavoro del Rinascimento con la celebre cupola di Brunelleschi.</p>
+                            
                             <ul class="list-unstyled small mb-3">
+                                <!-- small: testo ridotto per info secondarie -->
                                 <li><strong>Indirizzo:</strong> Piazza del Duomo</li>
                                 <li><strong>Orari:</strong> Lun–Sab 10:15–16:45, Dom 13:30–16:45</li>
                                 <li><strong>Prezzi:</strong> Cattedrale gratis; cupola/battistero con biglietto cumulativo</li>
                             </ul>
+                            
                             <div class="rating" aria-label="Valutazione media">
+                                <!-- aria-label: accessibilità per la valutazione -->
                                 ⭐⭐⭐⭐⭐ <span class="text-muted">4.8/5 (visitatori)</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Uffizi -->
+                
+                <!-- ========== CARD 2: Uffizi ========== -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm">
                         <img src="assets/img/Uffizi-florencewebp.webp" class="card-img-top" alt="Galleria degli Uffizi">
@@ -252,7 +489,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Ponte Vecchio -->
+                
+                <!-- ========== CARD 3: Ponte Vecchio ========== -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm">
                         <img src="assets/img/pontevecchio-florence.pg.jpg" class="card-img-top" alt="Ponte Vecchio">
@@ -270,7 +508,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Palazzo Pitti -->
+                <!-- ========== CARD 4: Palazzo Pitti ========== -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm">
                         <img src="assets/img/pitti-florence.jpg" class="card-img-top" alt="Palazzo Pitti">
@@ -288,7 +526,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Accademia -->
+                
+                <!-- ========== CARD 5: Accademia ========== -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm">
                         <img src="assets/img/Galleria-florence.jpg" class="card-img-top" alt="Galleria dell'Accademia">
@@ -306,7 +545,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Santa Croce -->
+                
+                <!-- ========== CARD 6: Santa Croce ========== -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm">
                         <img src="assets/img/santacroce-florence.jpg" class="card-img-top" alt="Basilica di Santa Croce">
@@ -328,26 +568,51 @@
         </div>
     </section>
 
-    <!-- Sezione Contatti -->
+    <!-- ================================================================
+         SEZIONE CONTATTI - Team di sviluppo
+         ================================================================ -->
     <section id="contatti" class="py-5 bg-light">
         <div class="container-lg">
             <h2 class="h1 fw-bold text-center mb-4">Contatti del Team</h2>
+            
             <div class="row g-4">
-                <!-- Roberto -->
+                <!-- ========== CONTATTO 1: Roberto ========== -->
                 <div class="col-md-4">
+                    <!-- col-md-4: 3 colonne uguali su tablet e desktop -->
+                    
                     <div class="contact-card card h-100 shadow-sm" data-member="roberto">
+                        <!-- 
+                            data-member="roberto": Attributo data personalizzato
+                            Usato da JavaScript per identificare il membro
+                        -->
+                        
                         <div class="card-body text-center">
-                            <img class="rounded-circle mb-3" src="https://ui-avatars.com/api/?name=Roberto&background=fbbf24&color=111827" width="92" height="92" alt="Avatar Roberto">
+                            <!-- text-center: centra tutto il contenuto -->
+                            
+                            <!-- Avatar generato dinamicamente da ui-avatars.com -->
+                            <img class="rounded-circle mb-3" 
+                                 src="https://ui-avatars.com/api/?name=Roberto&background=fbbf24&color=111827" 
+                                 width="92" height="92" 
+                                 alt="Avatar Roberto">
+                            <!-- rounded-circle: immagine rotonda -->
+                            
                             <h5 class="card-title mb-1">Roberto</h5>
                             <p class="text-muted small">Sviluppatore</p>
+                            
+                            <!-- Pulsante per mostrare/nascondere dettagli -->
                             <button class="btn btn-warning btn-sm mt-2">Mostra Dettagli</button>
+                            <!-- btn-sm: bottone piccolo -->
+                            
+                            <!-- Dettagli nascosti (d-none) - mostrati via JavaScript -->
                             <div class="contact-details mt-3 d-none">
+                                <!-- d-none: display none = NASCOSTO -->
                                 <p class="small mb-0"><strong>Email:</strong> grande.roberto@iisgalvanimi.edu.it</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- John Carlo -->
+                
+                <!-- ========== CONTATTO 2: John Carlo ========== -->
                 <div class="col-md-4">
                     <div class="contact-card card h-100 shadow-sm" data-member="johncarlo">
                         <div class="card-body text-center">
@@ -361,7 +626,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Francesco -->
+                
+                <!-- ========== CONTATTO 3: Francesco ========== -->
                 <div class="col-md-4">
                     <div class="contact-card card h-100 shadow-sm" data-member="francesco">
                         <div class="card-body text-center">
@@ -379,25 +645,59 @@
         </div>
     </section>
 
+    <!-- ================================================================
+         FOOTER - Piè di pagina
+         ================================================================ -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
+        <!-- 
+            bg-dark: sfondo scuro
+            text-white: testo bianco
+            text-center: testo centrato
+            py-4: padding verticale
+            mt-5: margin-top (spazio sopra)
+        -->
         <div class="container-lg">
             <p class="mb-2">&copy; 2025 Firenze - La Città dell'Arte. Tutti i diritti riservati.</p>
+            <!-- &copy; = simbolo © (copyright) -->
             <p class="text-muted small">Progetto realizzato per la scuola di progettazione web</p>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
+    <!-- ================================================================
+         SCRIPT JAVASCRIPT - Caricati in fondo per performance
+         ================================================================ -->
+    
+    <!-- 
+        PERCHÉ GLI SCRIPT SONO IN FONDO?
+        Il browser carica il documento dall'alto verso il basso.
+        Mettendo gli script in fondo:
+        1. L'HTML viene renderizzato prima (la pagina appare subito)
+        2. Gli script hanno accesso a tutti gli elementi del DOM
+        3. Migliore esperienza utente (perceived performance)
+    -->
+    
+    <!-- Bootstrap 5 JS - Fornisce interattività ai componenti (navbar collapse, ecc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Model Viewer Web Component (GLB/GLTF) -->
+    <!-- bundle.min.js include anche Popper.js per dropdown e tooltip -->
+    
+    <!-- Model Viewer - Web Component di Google per modelli 3D -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <!-- Three.js + STL Loader (fallback per file .stl) -->
+    <!-- type="module": Caricato come ES Module (supporta import/export) -->
+    
+    <!-- Three.js - Libreria per grafica 3D (fallback per STL) -->
     <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
     <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- OrbitControls: permette di ruotare la camera con mouse -->
     <script src="https://unpkg.com/three@0.160.0/examples/js/loaders/STLLoader.js"></script>
-    <!-- Leaflet JS -->
+    <!-- STLLoader: carica file .stl (formato 3D alternativo) -->
+    
+    <!-- Leaflet JS - Libreria per mappe interattive -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!-- Custom JS -->
+    
+    <!-- JavaScript personalizzato del progetto -->
     <script src="assets/js/script.js"></script>
+    <!-- Contiene: inizializzazione navbar, mappa, timeline, contatti -->
+    
 </body>
 </html>
 

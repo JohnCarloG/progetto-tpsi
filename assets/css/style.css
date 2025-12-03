@@ -1,88 +1,211 @@
-/* ===========================
-   Variabili CSS
-   =========================== */
+/* ===================================================================
+   STYLE.CSS - Stili personalizzati per il sito "Firenze"
+   
+   Questo file contiene tutti gli stili PERSONALIZZATI che estendono
+   o sovrascrivono quelli di Bootstrap 5.
+   
+   STRUTTURA DEL FILE:
+   1. Variabili CSS (Custom Properties)
+   2. Reset e stili base
+   3. Navbar
+   4. Hero Section
+   5. Sezione Introduzione
+   6. Timeline Storia
+   7. Mappa
+   8. Attrazioni (Cards)
+   9. Contatti
+   10. Footer
+   11. Animazioni
+   12. Media Queries (Responsive)
+   =================================================================== */
+
+
+/* ===================================================================
+   1. VARIABILI CSS (Custom Properties)
+   ===================================================================
+   
+   Le variabili CSS permettono di:
+   - Definire un valore UNA volta e usarlo ovunque
+   - Cambiare il colore dell'intero sito modificando UNA riga
+   - Mantenere consistenza nel design
+   
+   SINTASSI: --nome-variabile: valore;
+   USO: var(--nome-variabile)
+   
+   :root = selettore che punta all'elemento <html>
+   Le variabili definite qui sono GLOBALI (accessibili ovunque)
+*/
 :root {
-    --primary-color: #1f2937;
-    --warning-color: #fbbf24;
-    --text-primary: #111827;
-    --text-secondary: #6b7280;
-    --border-radius: 0.5rem;
-    --transition: all 0.3s ease;
+    --primary-color: #1f2937;      /* Grigio scuro - colore principale */
+    --warning-color: #fbbf24;      /* Giallo/oro - colore accento */
+    --text-primary: #111827;       /* Quasi nero - testo principale */
+    --text-secondary: #6b7280;     /* Grigio - testo secondario */
+    --border-radius: 0.5rem;       /* 8px - angoli arrotondati standard */
+    --transition: all 0.3s ease;   /* Transizione fluida per hover effects */
 }
 
-/* ===========================
-   Reset e Base
-   =========================== */
+/* ===================================================================
+   2. RESET E STILI BASE
+   ===================================================================
+   
+   Il "reset" normalizza il comportamento predefinito dei browser,
+   che può variare tra Chrome, Firefox, Safari, ecc.
+*/
+
+/* 
+   SELETTORE UNIVERSALE (*)
+   Si applica a TUTTI gli elementi della pagina
+*/
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0;      /* Rimuove margini predefiniti */
+    padding: 0;     /* Rimuove padding predefinito */
     box-sizing: border-box;
+    /* 
+       BOX-SIZING: BORDER-BOX è FONDAMENTALE!
+       
+       Senza border-box:
+       - width: 100px + padding: 10px = elemento di 120px totali
+       
+       Con border-box:
+       - width: 100px + padding: 10px = elemento di 100px totali
+         (il padding è INCLUSO nella larghezza)
+       
+       Questo rende molto più facile calcolare le dimensioni!
+    */
 }
 
 html {
     scroll-behavior: smooth;
+    /*
+       SCROLL BEHAVIOR: SMOOTH
+       Quando clicchi su un link interno (es. #storia),
+       invece di saltare istantaneamente alla sezione,
+       lo scroll avviene in modo FLUIDO e animato.
+       
+       Questa è una proprietà CSS pura, non richiede JavaScript!
+    */
 }
 
 body {
     font-family: 'Varela Round', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-    color: var(--text-primary);
+    /*
+       FONT-FAMILY: Stack di font con fallback
+       
+       1. 'Varela Round' - Font principale (Google Fonts)
+       2. -apple-system - Font di sistema su macOS/iOS
+       3. BlinkMacSystemFont - Font di sistema su Chrome/macOS
+       4. 'Segoe UI' - Font di sistema su Windows
+       5. 'Roboto' - Font di sistema su Android
+       6. 'Helvetica Neue' - Fallback classico
+       7. sans-serif - Fallback generico senza grazie
+       
+       Il browser usa il PRIMO font disponibile nella lista
+    */
+    color: var(--text-primary);  /* Colore testo usando la variabile */
     line-height: 1.6;
+    /*
+       LINE-HEIGHT: 1.6
+       Altezza della linea = 1.6 volte la dimensione del font
+       Migliora la leggibilità del testo
+    */
 }
 
-/* ===========================
-   Navbar
-   =========================== */
+/* ===================================================================
+   3. NAVBAR - Barra di navigazione
+   =================================================================== */
+
 .navbar {
     border-bottom: 2px solid rgba(251, 191, 36, 0.2);
+    /*
+       RGBA: Red, Green, Blue, Alpha
+       rgba(251, 191, 36, 0.2) = giallo con 20% di opacità
+       Crea un bordo sottile semitrasparente
+    */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /*
+       BOX-SHADOW: ombra dell'elemento
+       Sintassi: offset-x offset-y blur-radius colore
+       0 2px 8px = ombra verso il basso di 2px, sfumata di 8px
+    */
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
-    letter-spacing: 0.5px;
-    transition: var(--transition);
+    font-size: 1.5rem;      /* 24px (1rem = 16px di default) */
+    letter-spacing: 0.5px;  /* Spazio tra le lettere */
+    transition: var(--transition);  /* Transizione fluida per hover */
 }
 
 .navbar-brand:hover {
     transform: scale(1.05);
+    /*
+       TRANSFORM: SCALE
+       Ingrandisce l'elemento del 5% al passaggio del mouse
+       Effetto sottile ma piacevole
+    */
 }
 
 .nav-link {
-    font-weight: 500;
+    font-weight: 500;       /* Peso del font: medio-grassetto */
     letter-spacing: 0.3px;
     transition: var(--transition);
-    position: relative;
+    position: relative;     /* Necessario per posizionare ::after */
 }
 
+/*
+   PSEUDO-ELEMENTO ::AFTER
+   
+   Crea un elemento "virtuale" DOPO il contenuto del link.
+   Usato qui per creare l'effetto underline animato.
+   
+   La linea parte con width: 0 (invisibile)
+   e si espande a width: 100% al hover
+*/
 .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--warning-color);
-    transition: var(--transition);
+    content: '';           /* Obbligatorio per ::after, può essere vuoto */
+    position: absolute;    /* Posizionamento assoluto rispetto al parent */
+    width: 0;              /* Inizia invisibile */
+    height: 2px;           /* Altezza della linea */
+    bottom: -5px;          /* 5px sotto il testo */
+    left: 0;               /* Allineato a sinistra */
+    background-color: var(--warning-color);  /* Colore giallo */
+    transition: var(--transition);  /* Animazione fluida */
 }
 
+/* Al hover O quando il link è attivo, la linea si espande */
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: 100%;
+    width: 100%;  /* La linea diventa larga quanto il link */
 }
 
-/* ===========================
-   Hero Section
-   =========================== */
+/* ===================================================================
+   4. HERO SECTION - Sezione principale di impatto
+   =================================================================== */
+
 .hero-section {
-    position: relative;
+    position: relative;     /* Per posizionare l'overlay */
     height: 90vh;
-    min-height: 600px;
+    /*
+       VH = Viewport Height (altezza della finestra)
+       90vh = 90% dell'altezza dello schermo
+       Garantisce che la hero sia sempre prominente
+    */
+    min-height: 600px;      /* Minimo 600px anche su schermi piccoli */
     display: flex;
-    align-items: center;
-    overflow: hidden;
+    align-items: center;    /* Centra verticalmente il contenuto */
+    overflow: hidden;       /* Nasconde contenuto che esce dai bordi */
     background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    /*
+       LINEAR-GRADIENT: Sfumatura lineare
+       135deg = direzione diagonale (alto-sinistra → basso-destra)
+       #1f2937 0% = grigio scuro all'inizio
+       #374151 100% = grigio medio alla fine
+    */
 }
 
+/*
+   OVERLAY DECORATIVO
+   Pattern di puntini gialli creato con SVG inline
+*/
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -90,77 +213,112 @@ body {
     right: 0;
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(251,191,36,0.1)"/></pattern></defs><rect width="1200" height="600" fill="url(%23pattern)"/></svg>');
-    pointer-events: none;
+    /*
+       DATA URI: SVG codificato direttamente nel CSS
+       Evita una richiesta HTTP aggiuntiva
+       Crea un pattern di cerchi gialli semitrasparenti
+    */
+    pointer-events: none;  /* I click passano attraverso l'overlay */
 }
 
 .hero-section h1 {
     font-size: clamp(2.5rem, 8vw, 4rem);
-    letter-spacing: -1px;
-    animation: fadeInDown 0.8s ease-out;
+    /*
+       CLAMP(): Funzione CSS moderna per valori responsivi
+       Sintassi: clamp(minimo, preferito, massimo)
+       
+       - Minimo: 2.5rem (40px) - non scende mai sotto
+       - Preferito: 8vw (8% della larghezza viewport)
+       - Massimo: 4rem (64px) - non sale mai sopra
+       
+       Il font si adatta automaticamente alla larghezza dello schermo!
+    */
+    letter-spacing: -1px;  /* Lettere leggermente più vicine */
+    animation: fadeInDown 0.8s ease-out;  /* Animazione all'apertura */
 }
 
 .hero-section .lead {
-    font-size: 1.25rem;
-    max-width: 600px;
-    color: #e5e7eb;
+    font-size: 1.25rem;    /* 20px */
+    max-width: 600px;      /* Limita la larghezza per leggibilità */
+    color: #e5e7eb;        /* Grigio chiaro */
     animation: fadeInUp 0.8s ease-out 0.2s both;
+    /*
+       ANIMATION: nome durata curva delay fill-mode
+       
+       - fadeInUp: nome dell'animazione (definita in fondo al file)
+       - 0.8s: durata dell'animazione
+       - ease-out: curva di accelerazione (rallenta alla fine)
+       - 0.2s: DELAY - inizia 0.2s dopo il caricamento
+       - both: mantiene lo stato finale dell'animazione
+    */
 }
 
 .hero-section .d-flex {
     animation: fadeInUp 0.8s ease-out 0.4s both;
+    /* Delay maggiore (0.4s) per effetto "staggered" (a cascata) */
 }
 
+/* Stili per il pulsante giallo (warning) */
 .btn-warning {
     background-color: var(--warning-color);
     border-color: var(--warning-color);
-    color: #111827;
+    color: #111827;  /* Testo scuro su sfondo giallo per contrasto */
     transition: var(--transition);
 }
 
 .btn-warning:hover {
-    background-color: #f59e0b;
+    background-color: #f59e0b;  /* Giallo più scuro al hover */
     border-color: #f59e0b;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(251, 191, 36, 0.3);
+    transform: translateY(-2px);  /* Si alza di 2px - effetto "sollevamento" */
+    box-shadow: 0 8px 16px rgba(251, 191, 36, 0.3);  /* Ombra gialla */
 }
 
+/* Stili per il pulsante con solo bordo (outline) */
 .btn-outline-light {
     border-width: 2px;
     transition: var(--transition);
 }
 
 .btn-outline-light:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);  /* Sfondo bianco semitrasparente */
     border-color: var(--warning-color);
     color: var(--warning-color);
     transform: translateY(-2px);
 }
 
-/* ===========================
-   Duomo 3D Card
-   =========================== */
+/* ===================================================================
+   DUOMO 3D CARD - Visualizzatore modello 3D
+   =================================================================== */
+
 .duomo-3d .card-header {
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* Linea sottile semitrasparente sotto l'header */
 }
 
 .duomo-3d model-viewer {
     --progress-bar-color: var(--warning-color);
+    /* 
+       Variabile CSS del componente <model-viewer>
+       Cambia il colore della barra di caricamento
+    */
 }
 
 .duomo-3d .card-header span.fw-semibold {
     font-size: 0.95rem;
 }
 
-/* Responsive 3D viewer */
+/* Responsive per il viewer 3D su tablet */
 @media (max-width: 991px) {
     .duomo-3d {
         margin-top: 2rem;
     }
     .duomo-3d model-viewer {
         height: 280px !important;
+        /* !important sovrascrive lo stile inline dell'HTML */
     }
 }
 
+/* Responsive per il viewer 3D su mobile */
 @media (max-width: 576px) {
     .duomo-3d .card-header span.fw-semibold {
         font-size: 0.85rem;
@@ -170,11 +328,13 @@ body {
     }
 }
 
-/* ===========================
-   Introduction Section
-   =========================== */
+
+/* ===================================================================
+   5. SEZIONE INTRODUZIONE
+   =================================================================== */
+
 #intro {
-    background-color: #f9fafb;
+    background-color: #f9fafb;  /* Grigio molto chiaro */
 }
 
 #intro h2 {
@@ -184,25 +344,28 @@ body {
 
 #intro p {
     font-size: 1.05rem;
-    line-height: 1.8;
+    line-height: 1.8;  /* Maggiore interlinea per leggibilità */
 }
 
+/* Contenitore immagine con effetti hover */
 .image-placeholder {
     background: white;
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow: hidden;  /* Nasconde gli angoli dell'immagine che escono */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
 }
 
 .image-placeholder:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    /* Ombra più pronunciata al hover - effetto "sollevamento" */
 }
 
 .image-placeholder svg {
-    display: block;
+    display: block;  /* Rimuove lo spazio sotto le immagini inline */
 }
 
+/* Effetto hover sui punti della lista */
 #intro .list-unstyled li {
     font-size: 1.05rem;
     color: var(--text-primary);
@@ -210,39 +373,61 @@ body {
 }
 
 #intro .list-unstyled li:hover {
-    transform: translateX(8px);
+    transform: translateX(8px);  /* Si sposta di 8px a destra al hover */
 }
 
-/* ===========================
-   Footer
-   =========================== */
+/* ===================================================================
+   10. FOOTER - Piè di pagina
+   =================================================================== */
+
 footer {
     border-top: 2px solid rgba(251, 191, 36, 0.2);
+    /* Bordo giallo semitrasparente in alto */
     margin-top: auto;
+    /* 
+       MARGIN-TOP: AUTO
+       Se il contenuto è poco, spinge il footer in fondo alla pagina
+       Funziona quando il body ha display: flex e flex-direction: column
+    */
 }
 
 footer p {
     margin: 0;
 }
 
-/* ===========================
-   Animazioni
-   =========================== */
+
+/* ===================================================================
+   11. ANIMAZIONI (@keyframes)
+   ===================================================================
+   
+   @keyframes definisce un'animazione CSS riutilizzabile.
+   
+   Puoi specificare:
+   - from/0%: stato iniziale
+   - to/100%: stato finale
+   - Stati intermedi: 25%, 50%, 75%, ecc.
+   
+   Per usare l'animazione:
+   animation: nome-animazione durata curva;
+*/
+
+/* Animazione: elemento che scende dall'alto diventando visibile */
 @keyframes fadeInDown {
     from {
-        opacity: 0;
-        transform: translateY(-30px);
+        opacity: 0;                   /* Completamente invisibile */
+        transform: translateY(-30px); /* 30px SOPRA la posizione finale */
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1;                   /* Completamente visibile */
+        transform: translateY(0);     /* Posizione normale */
     }
 }
 
+/* Animazione: elemento che sale dal basso diventando visibile */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(30px);  /* 30px SOTTO la posizione finale */
     }
     to {
         opacity: 1;
@@ -250,38 +435,59 @@ footer p {
     }
 }
 
-/* ===========================
-   Timeline Storia
-   =========================== */
+/* ===================================================================
+   6. TIMELINE STORIA
+   ===================================================================
+   
+   La timeline è una lista verticale stilizzata con:
+   - Una linea verticale gialla a sinistra (border-left)
+   - Pallini gialli (timeline-point) posizionati sulla linea
+   - Contenuto testuale a destra di ogni pallino
+   - Animazione di comparsa quando si scrolla
+*/
+
 .timeline {
     position: relative;
-    padding-left: 2.5rem;
+    padding-left: 2.5rem;  /* Spazio a sinistra per i pallini */
     border-left: 3px solid rgba(251, 191, 36, 0.4);
+    /* Linea verticale gialla semitrasparente */
 }
 
 .timeline-item {
     position: relative;
     margin-bottom: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
+    
+    /* STATO INIZIALE per animazione scroll-reveal */
+    opacity: 0;                    /* Invisibile */
+    transform: translateY(20px);   /* 20px sotto */
     transition: var(--transition);
 }
 
+/* 
+   Classe aggiunta da JavaScript (IntersectionObserver)
+   quando l'elemento entra nella viewport
+*/
 .timeline-item.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;              /* Diventa visibile */
+    transform: translateY(0); /* Torna in posizione */
 }
 
+/* Pallino giallo sulla linea della timeline */
 .timeline-point {
-    position: absolute;
-    left: -1.15rem;
-    top: 0.35rem;
+    position: absolute;      /* Posizionato rispetto a .timeline-item */
+    left: -1.15rem;          /* Posizionato sulla linea verticale */
+    top: 0.35rem;            /* Allineato con il titolo */
     width: 0.9rem;
     height: 0.9rem;
-    background: var(--warning-color);
-    border: 3px solid #fff;
-    border-radius: 50%;
+    background: var(--warning-color);  /* Giallo pieno */
+    border: 3px solid #fff;            /* Bordo bianco */
+    border-radius: 50%;                /* Cerchio perfetto (50% = cerchio) */
     box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.15);
+    /* 
+       BOX-SHADOW come "alone"
+       0 0 0 4px = nessun offset, nessuna sfumatura, spread di 4px
+       Crea un alone giallo intorno al pallino
+    */
 }
 
 .timeline-content h5 {
@@ -293,53 +499,83 @@ footer p {
     line-height: 1.5;
 }
 
+/* Timeline responsive per smartphone */
 @media (max-width: 576px) {
     .timeline {
-        padding-left: 1.75rem;
+        padding-left: 1.75rem;  /* Meno spazio su mobile */
     }
     .timeline-point {
         left: -0.95rem;
     }
 }
 
-/* ===========================
-   Responsive Design
-   =========================== */
+/* ===================================================================
+   12. MEDIA QUERIES - Design Responsive
+   ===================================================================
+   
+   Le media queries applicano stili SOLO quando certe condizioni
+   sono vere (es. larghezza schermo < 768px).
+   
+   SINTASSI:
+   @media (condizione) {
+       selettore { proprietà: valore; }
+   }
+   
+   BREAKPOINT COMUNI (Bootstrap):
+   - max-width: 576px  → Smartphone (xs)
+   - max-width: 768px  → Tablet portrait (sm)
+   - max-width: 992px  → Tablet landscape (md)
+   - max-width: 1200px → Desktop piccoli (lg)
+   
+   APPROCCIO MOBILE-FIRST vs DESKTOP-FIRST:
+   - Mobile-first: stili base per mobile, media query con min-width per desktop
+   - Desktop-first: stili base per desktop, media query con max-width per mobile
+   
+   Questo file usa l'approccio DESKTOP-FIRST (max-width)
+*/
+
+/* TABLET E MOBILE (schermi < 768px) */
 @media (max-width: 768px) {
     .hero-section {
-        height: 70vh;
+        height: 70vh;       /* Riduce l'altezza su schermi piccoli */
         min-height: 500px;
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 2rem;    /* Titolo più piccolo: 32px */
     }
 
     .hero-section .lead {
-        font-size: 1rem;
+        font-size: 1rem;    /* Sottotitolo più piccolo */
         margin-bottom: 1.5rem;
     }
 
     .d-flex.gap-3 {
         flex-direction: column;
+        /* 
+           FLEX-DIRECTION: COLUMN
+           I pulsanti si dispongono in COLONNA (uno sopra l'altro)
+           invece che in riga (uno accanto all'altro)
+        */
     }
 
     .btn-lg {
-        width: 100%;
+        width: 100%;  /* Pulsanti a larghezza piena su mobile */
     }
 
     #intro .image-placeholder {
-        margin-bottom: 2rem;
+        margin-bottom: 2rem;  /* Spazio sotto l'immagine prima del testo */
     }
 }
 
+/* SMARTPHONE (schermi < 576px) */
 @media (max-width: 576px) {
     .navbar-brand {
-        font-size: 1.25rem;
+        font-size: 1.25rem;  /* Logo più piccolo */
     }
 
     .hero-section h1 {
-        font-size: 1.75rem;
+        font-size: 1.75rem;  /* Titolo ancora più piccolo: 28px */
     }
 
     .hero-section .lead {
@@ -355,51 +591,74 @@ footer p {
     }
 }
 
-/* ===========================
-   Mappa Duomo
-   =========================== */
+/* ===================================================================
+   7. MAPPA LEAFLET
+   ===================================================================
+   
+   Stili per il contenitore della mappa interattiva.
+   La mappa viene inizializzata via JavaScript (Leaflet).
+*/
+
 #mappa-duomo {
-    height: 420px;
-    border: 2px solid rgba(251, 191, 36, 0.3);
+    height: 420px;  /* Altezza fissa della mappa */
+    border: 2px solid rgba(251, 191, 36, 0.3);  /* Bordo giallo */
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow: hidden;  /* Nasconde i bordi della mappa che escono */
 }
 
+/* Personalizzazione dei pulsanti di zoom di Leaflet */
 #mappa-duomo .leaflet-control-zoom a {
-    background: var(--primary-color);
-    color: #fff;
+    background: var(--primary-color);  /* Sfondo grigio scuro */
+    color: #fff;                       /* Testo/icona bianco */
     border: none;
 }
 
 #mappa-duomo .leaflet-control-zoom a:hover {
-    background: var(--warning-color);
-    color: #111827;
+    background: var(--warning-color);  /* Sfondo giallo al hover */
+    color: #111827;                    /* Testo scuro al hover */
 }
 
-/* ===========================
-   Attrazioni
-   =========================== */
+
+/* ===================================================================
+   8. ATTRAZIONI (Cards)
+   =================================================================== */
+
 .card .rating {
     font-size: 1rem;
 }
 
 .card-img-top {
-    height: 180px;
+    height: 180px;        /* Altezza fissa per tutte le immagini */
     object-fit: cover;
+    /*
+       OBJECT-FIT: COVER
+       
+       L'immagine RIEMPIE completamente il contenitore
+       mantenendo le sue proporzioni originali.
+       
+       Se l'immagine non ha le proporzioni giuste,
+       viene RITAGLIATA (non deformata).
+       
+       ALTERNATIVA: object-fit: contain
+       L'immagine intera è visibile, ma potrebbero
+       esserci bande vuote (letterboxing)
+    */
 }
 
-/* ===========================
-   Contatti Interattivi
-   =========================== */
+
+/* ===================================================================
+   9. CONTATTI INTERATTIVI
+   =================================================================== */
+
 .contact-card button {
     transition: var(--transition);
 }
 
 .contact-card button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-1px);  /* Leggero sollevamento al hover */
 }
 
 .contact-details {
-    text-align: left;
+    text-align: left;  /* Testo allineato a sinistra nei dettagli */
 }
 
